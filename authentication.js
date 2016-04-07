@@ -1,6 +1,6 @@
 myApp.factory('Authentication',
-  ['$rootScope', '$firebaseAuth', '$firebaseObject', '$location', '$window', 'FIREBASE_URL',
-  function($rootScope, $firebaseAuth, $firebaseObject, $location, $window, FIREBASE_URL) {
+  ['$rootScope', '$firebaseAuth', '$firebaseObject', '$location', '$window', 'FIREBASE_URL', 'sharedTasks',
+  function($rootScope, $firebaseAuth, $firebaseObject, $location, $window, FIREBASE_URL, sharedTasks) {
 
   var ref = new Firebase(FIREBASE_URL);
   var auth = $firebaseAuth(ref);
@@ -22,7 +22,8 @@ myApp.factory('Authentication',
         email: user.email,
         password: user.password
       }).then(function(regUser) {
-        $window.location.href = '#/tasks';
+        // $window.location.href = '#/tasks';
+        console.log(sharedTasks.getFirstname(),  "id", $rootScope.$id);
       }).catch(function(error) {
        $rootScope.message = "Invalid username and password combination."; 
       });
